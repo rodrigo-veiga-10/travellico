@@ -6,7 +6,7 @@
     "distDir": "../dist"
   },
   "package": {
-    "productName": "travellico",
+    "productName": "Travellico",
     "version": "0.0.0"
   },
   "tauri": {
@@ -37,8 +37,8 @@
         "fullscreen": false,
         "resizable": true,
         "title": "travellico",
-        "width": 800,
-        "height": 600
+        "width": 1020,
+        "height": 700
       }
     ]
   }
