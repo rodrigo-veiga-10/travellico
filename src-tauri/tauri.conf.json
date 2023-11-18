@@ -6,7 +6,7 @@
     "distDir": "../dist"
   },
   "package": {
-    "productName": "travellico",
+    "productName": "Travellico",
     "version": "0.0.0"
   },
   "tauri": {
@@ -15,6 +15,9 @@
       "shell": {
         "all": false,
         "open": true
+      },
+      "path": {
+        "all": true
       }
     },
     "bundle": {
@@ -22,11 +25,8 @@
       "targets": "all",
       "identifier": "com.travellico.dev",
       "icon": [
-        "icons/32x32.png",
-        "icons/128x128.png",
-        "icons/128x128@2x.png",
-        "icons/icon.icns",
-        "icons/icon.ico"
+        "icons/icon.png",
+        "icons/icon.icns"
       ]
     },
     "security": {
@@ -37,8 +37,8 @@
         "fullscreen": false,
         "resizable": true,
         "title": "travellico",
-        "width": 800,
-        "height": 600
+        "width": 1020,
+        "height": 700
       }
     ]
   }
