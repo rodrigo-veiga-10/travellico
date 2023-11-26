@@ -62,7 +62,7 @@ export default function Setup(){
             <div className="justify-center">
                 <div className="justify-between mt-40">
                     <p className="text-8xl text-center">What's your name</p>
-                    <p className="text-4xl mt-8 text-[#a6a5a5] text-center">Can be changed later</p>
+                    <p className="text-4xl mt-8 text-[#a6a5a5] text-center">Can be changed later, in the settings</p>
                 </div>
                 <form onSubmit={(e) => e.preventDefault()} className="flex justify-center mt-16">
                     <input type="text" ref={nameRef} onBlur={submitName} className="bg-[#242424] w-[360px] h-[70px] rounded-3xl text-4xl border border-stone-700 p-3 outline-none" />
