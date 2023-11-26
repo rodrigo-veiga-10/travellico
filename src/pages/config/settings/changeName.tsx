@@ -67,7 +67,7 @@ function showName() {
         }
 
         if (options.vowels) {
-            modifiedName = modifiedName.replace(/[bcdfghjklmnpqrstvwxz\u0080-\uFFFF]/gi, '');
+            modifiedName = modifiedName.replace(/[bcdfghjklmnpqrstvwxyz\u0080-\uFFFF]/gi, '');
         }
 
         if (options.consonants) {
