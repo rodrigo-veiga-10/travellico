@@ -1,34 +1,26 @@
 import {BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { listen } from '@tauri-apps/api/event'
 
 // pages
 import Home from "./pages/main/home/home";
-import Settings from "./pages/config/settings/settings";
 
 //components
 import Setup from "./pages/main/components/setup/setup";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 export default function App() {
-  
-  const [userChecked, setUserChecked] = useState(false);
-
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/setup" element={<Setup />} />
-        <Route path="/settings" element={<Settings />} />
         <Route path="/" element={<Home />} />
       </Routes>
-      {!userChecked && <CheckUser setUserChecked={setUserChecked} />}
-      <UseSettingsListener />
+      <CheckUser />
     </BrowserRouter>
   );
 }
 
-
-function CheckUser({ setUserChecked }: any) {
+function CheckUser() {
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -42,24 +34,11 @@ function CheckUser({ setUserChecked }: any) {
             navigate("/setup");
           }
           console.log("res", data);
-          setUserChecked(true);
         } catch (error) {
           navigate("/setup");
-          setUserChecked(true);
         }
       });
   }, [navigate]);
 
-  return null;
-}
-
-function UseSettingsListener() {
-  let navigate = useNavigate();
-
-  useEffect(() => {
-    listen("settings", _event => {
-      navigate("/settings");
-    })
-  }, [navigate]);
   return null;
 }
