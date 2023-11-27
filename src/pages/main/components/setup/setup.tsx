@@ -54,7 +54,7 @@ export default function Setup(){
                     <p className="text-3xl mt-8 text-[#a6a5a5] text-center">To begin using Travellico, you need to configure some settings</p>
                 </div>
                 <div className="flex justify-center">
-                    <button className="bg-[#242424] w-[200px] h-[100px] mt-40 rounded-3xl text-4xl border border-stone-700" onClick={showContent}>Continue</button>
+                    <button className="bg-[#1b1b1b] w-[200px] h-[100px] mt-40 rounded-3xl text-4xl border border-stone-700" onClick={showContent}>Continue</button>
                 </div>
             </div>
         }
@@ -65,10 +65,10 @@ export default function Setup(){
                     <p className="text-4xl mt-8 text-[#a6a5a5] text-center">Can be changed later, in the settings</p>
                 </div>
                 <form onSubmit={(e) => e.preventDefault()} className="flex justify-center mt-16">
-                    <input type="text" ref={nameRef} onBlur={submitName} className="bg-[#242424] w-[360px] h-[70px] rounded-3xl text-4xl border border-stone-700 p-3 outline-none" />
+                    <input type="text" ref={nameRef} onBlur={submitName} className="bg-[#1b1b1b] w-[360px] h-[70px] rounded-3xl text-4xl border border-stone-700 p-3 outline-none" />
                 </form>
                 <div className="flex justify-center mt-20">
-                    <button className="bg-[#242424] w-[200px] h-[80px] rounded-3xl text-2xl border border-stone-700" onClick={showContent}>Continue</button>
+                    <button className="bg-[#1b1b1b] w-[200px] h-[80px] rounded-3xl text-2xl border border-stone-700" onClick={showContent}>Continue</button>
                 </div>
             </div>
         }
@@ -80,7 +80,7 @@ export default function Setup(){
             </div>
             <p className="text-8xl text-center mt-40">You're ready</p>
             <div className="flex justify-center mt-20">
-                <button className="bg-[#242424] w-[200px] h-[80px] rounded-3xl text-2xl border border-stone-700" onClick={() => {setupShown(); navigate("/")}}>Continue</button>
+                <button className="bg-[#1b1b1b] w-[200px] h-[80px] rounded-3xl text-2xl border border-stone-700" onClick={() => {setupShown(); navigate("/")}}>Continue</button>
             </div>
         </div>
 
