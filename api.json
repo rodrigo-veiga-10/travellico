@@ -1,0 +1,190 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+   "title": "Travellico API",
+   "version": "1.1.2"
+  },
+  "servers": [
+  {
+    "url": "http://localhost:3000"
+  }
+  ],
+  "paths": {
+   "/": {
+     "get": {
+       "summary": "Main route",
+       "responses": {
+         "200": {
+           "description": "A simple greeting message"
+         }
+       }
+     }
+   },
+   "/user": {
+     "get": {
+       "summary": "User main route",
+       "responses": {
+         "200": {
+           "description": "A simple greeting message for user"
+         }
+       }
+     }
+   },
+   "/user/info": {
+     "get": {
+       "summary": "User information main route",
+       "responses": {
+         "200": {
+           "description": "A simple greeting message for user information"
+         }
+       }
+     }
+   },
+   "/user/info/exist": {
+     "get": {
+       "summary": "Check if user information file exists",
+       "responses": {
+         "200": {
+           "description": "Returns a JSON object with a message indicating whether the user information file exists"
+         }
+       }
+     }
+   },
+   "/user/info/create": {
+     "get": {
+       "summary": "Create a new user information file",
+       "responses": {
+         "200": {
+           "description": "Returns a JSON object with a message indicating the result of the file creation operation"
+         }
+       }
+     }
+   },
+   "/user/info/add": {
+     "post": {
+       "summary": "Add user information to the file",
+       "requestBody": {
+         "required": true,
+         "content": {
+           "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                 "type": "string",
+                 "description": "The user information to add"
+                }
+              }
+            }
+           }
+         }
+       },
+       "responses": {
+         "200": {
+           "description": "Returns a JSON object with a message indicating the result of the add operation"
+         }
+       }
+     }
+   },
+   "/user/info/data": {
+     "get": {
+       "summary": "Get user information from the file",
+       "responses": {
+         "200": {
+           "description": "Returns a JSON object with the user information"
+         }
+       }
+     }
+   },
+   "/project": {
+     "get": {
+       "summary": "Project main route",
+       "responses": {
+         "200": {
+           "description": "Returns a simple greeting from the project route"
+         }
+       }
+     }
+   },
+   "/project/exist_env": {
+     "get": {
+       "summary": "Check if project environment exists",
+       "responses": {
+         "200": {
+           "description": "Returns a JSON object with a message indicating whether the project environment exists"
+         }
+       }
+     }
+   },
+   "/project/create_env": {
+    "get": {
+      "summary": "Create the project environment",
+      "responses": {
+        "200": {
+          "description": "Returns a JSON object with a message indicating if the project environment could be created"
+        }
+      }
+    }
+  },
+  "/project/create": {
+    "post": {
+      "summary": "Create a project",
+      "requestBody": {
+        "required": true,
+        "content": {
+          "application/json": {
+           "schema": {
+             "type": "object",
+             "properties": {
+               "data": {
+                "title": "name",
+                "type": "string",
+                "description": "the name of the project"
+               }
+             }
+           }
+          }
+        }
+      },
+      "responses": {
+        "200": {
+          "description": "Returns a JSON object with a message indicating the result of the creation"
+        }
+      }
+    }
+  },
+  "/project/add": {
+    "post": {
+      "summary": "Add project info",
+      "requestBody": {
+        "required": true,
+        "content": {
+          "application/json": {
+           "schema": {
+             "type": "object",
+             "properties": {
+               "project name": {
+                "title": "project name",
+                "type": "string",
+                "description": "the name of the project, you want to add info"
+               },
+               "data":{
+                "title": "data",
+                "type": "JSON",
+                "description": "the data that you want to add, the data should be in JSON"
+               }
+             }
+           }
+          }
+        }
+      },
+      "responses": {
+        "200": {
+          "description": "Returns a JSON object with a message indicating the result of the creation"
+        }
+      }
+    }
+  }
+  }
+ }
+ 

@@ -14,7 +14,7 @@ export default function Settings(){
     }
 
     return(
-      <div className="flex flex-col h-screen bg-zinc-900 text-white">
+      <div className="flex flex-col h-screen">
           <div className="py-4 px-6 lg:px-8 xl:px-10 2xl:px-12 flex justify-between items-center relative w-full">
               <img src={backIcon} alt="Back" onClick={backHome} className="h-14 cursor-pointer" />
               <p className="text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl mx-auto  pt-2 font-light">
