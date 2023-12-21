@@ -1,6 +1,6 @@
 import axios from "axios"
 import Back from "../../../../components/Back";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import arrow from "./arrow.png"
 import { useNavigate } from "react-router-dom";
 
@@ -16,16 +16,19 @@ export default function ProjectCreation(){
     const Coordinates_to: number[]  = []
     
     //all the info is here
-    const From = {
+    const [From, setFrom] = useState({
+        id: "",
         name: "",
         lat: "",
         lon: ""
-    }
-    const To = {
+     });
+     
+     const [To, setTo] = useState({
+        id: "",
         name: "",
         lat: "",
         lon: ""
-    }
+     });
 
 
 
@@ -96,11 +99,13 @@ export default function ProjectCreation(){
                     project_name: name,
                     data: {
                         "from": {
+                            "id": From.id,
                             "name": From.name.trim(),
                             "latitude": From.lat,
                             "longitude": From.lon
                         },
                         "to": {
+                            "id": To.id,
                             "name": To.name.trim(),
                             "latitude": To.lat,
                             "longitude": To.lon
@@ -167,7 +172,6 @@ export default function ProjectCreation(){
             }
             checkInput()
             HandleResults(results)
-            
 
         })
         function HandleResults(data: any[] ): void {
@@ -193,6 +197,33 @@ export default function ProjectCreation(){
                 list.removeChild(list.firstChild);
             }
 
+            function HandleOnClick(result: any, result_html: any){
+                if(ref){
+                    if(ref.current){
+                        let result_html_formated: string[] = result_html.innerHTML.split("-")
+                 
+                        ref.current.value = result_html_formated[0] 
+                 
+                        container?.classList.add('hidden')
+                    }
+                }
+                if(location === "from"){
+                    setFrom({
+                        id: result.properties.osm_id,
+                        name: result.properties.name,
+                        lat: result.geometry.coordinates[1],
+                        lon: result.geometry.coordinates[0]
+                    })
+                }else if (location === "to"){
+                    setTo({
+                        id: result.properties.osm_id,
+                        name: result.properties.name,
+                        lat: result.geometry.coordinates[1],
+                        lon: result.geometry.coordinates[0]
+                    })
+                }
+             }
+             
 
             for (let results = 0; results < filtered_results.length; results++) {
                 
@@ -200,31 +231,8 @@ export default function ProjectCreation(){
                 const result = filtered_results[results];
                 const result_html = document.createElement("li")
                 result_html.className = "bg-zinc-700 border-gray-400 border rounded-lg p-2"
-                result_html.onclick = () => {
-                    HandleOnClick()
-                }
-                function HandleOnClick(){
-                    if(ref){
-                        if(ref.current){
-                            let result_html_formated: string[] = result_html.innerHTML.split("-")
-
-                            ref.current.value = result_html_formated[0] 
-
-                            
-                            container?.classList.add('hidden')
-                        }
-                    }
-                    if(location === "from"){
-                        From.name = result.properties.name
-                        From.lat = result.geometry.coordinates[1]
-                        From.lon = result.geometry.coordinates[0]
-                    }else if (location === "to"){
-                        To.name = result.properties.name
-                        To.lat = result.geometry.coordinates[1]
-                        To.lon = result.geometry.coordinates[0]
-                    }
-                    console.log(From, To)
-                }
+                result_html.onclick = () => HandleOnClick(result, result_html)
+                
                 if (result.properties.city) {
                     result_html.innerHTML = `${result.properties.name}, ${result.properties.city}, ${result.properties.country} - ${result.properties.osm_value}`;
                 } else if (result.properties.state) {
@@ -338,9 +346,9 @@ export default function ProjectCreation(){
         
     }
 
-    function HandleCreate() {
+    function validateForm() {
         const empty = "";
-    
+       
         const invalid: {
             name: string;
             from: string;
@@ -351,13 +359,13 @@ export default function ProjectCreation(){
             from: "",
             to: ""
         };
-    
+       
         const ValidationError = [
             { ref: NameRef, field: "name", message: "empty" },
             { ref: FirstCityRef, field: "from", message: "empty" },
             { ref: SecondCityRef, field: "to", message: "empty" }
         ];
-    
+       
         ValidationError.forEach(({ ref, field, message }) => {
             if (ref?.current?.value === empty) {
                 invalid[field] = message;
@@ -367,11 +375,11 @@ export default function ProjectCreation(){
         });
         
         let pass_validation = 0
-
+       
         for (let key in invalid) {
-
+       
             const paragraph_guess: HTMLInputElement | null = document.getElementById(key + "_paragraph") as HTMLInputElement;
-
+       
             if (invalid[key] == "empty"){
                 paragraph_guess.style.outlineColor = "red"
             } else{
@@ -379,14 +387,24 @@ export default function ProjectCreation(){
                 pass_validation += 1
             }
         }
-
-
+       
         const KeysNumber: number = Object.keys(invalid).length 
         if (pass_validation == KeysNumber){
-            FirstProject()
+            return true;
+        } else {
+            return false;
         }
+       }
+       
 
-    }
+    const [Create, setCreate] = useState(0)
+
+    useEffect(() => {
+        if (From.name !== "" && To.name !== "") {
+          FirstProject();
+        }
+       }, [Create]);
+       
 
 
     
@@ -456,7 +474,7 @@ export default function ProjectCreation(){
         <div className="flex justify-center mt-52">
             <button
                 type="submit"
-                onClick={HandleCreate}
+                onClick={() => [validateForm(), setCreate(1)]}
                 className="bg-zinc-800 text-white rounded-xl py-3 mt-5 w-full md:w-24 border border-zinc-700" 
             >Create</button>
         </div>
