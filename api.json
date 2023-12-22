@@ -184,7 +184,35 @@
         }
       }
     }
+  },
+  "/project/data": {
+    "post": {
+      "summary": "get data",
+      "requestBody": {
+        "required": true,
+        "content": {
+          "application/json": {
+           "schema": {
+             "type": "object",
+             "properties": {
+               "option": {
+                "title": "option",
+                "type": "string",
+                "description": "empty string, for getting simple data of all projects"
+               }
+             }
+           }
+          }
+        }
+      },
+      "responses": {
+        "200": {
+          "description": "Returns a JSON object with a message indicating the result of the creation"
+        }
+      }
+    }
   }
   }
- }
+}
+
  

@@ -46,6 +46,7 @@ export default function ProjectCreation(){
     
 
     function FirstProject(){
+        console.log("called")
         const name = NameRef.current?.value;
         axios.get("http://localhost:3000/project/exist_env")
         .then((res) => {
@@ -57,45 +58,8 @@ export default function ProjectCreation(){
                 .then((res) => {
                     if (res.data.project_env_created === "true"){
                         console.log("project env created successfully")
-                        if(From.name === ""){
-                            console.log("From is empty")
-                            Search("from")
-                            console.log(From)
-                        } else if (To.name === ""){
-                            console.log("To is empty")
-                            Search("to")
-                            console.log(To)
-                        }else{
-                            PostName()
-                            navigate("/")
-                        }
-                    } else{
-                        console.error("project env couldn't be created")
-                    }
-                })
-            } else{
-                //project environment exists so call the route to create the first project
-                if(From.name === ""){
-                    //error to be fixed
-                    alert(`Please select the "From" place again, sorry for the error`)
-
-                    Search("from")
-                    console.log(From)
-                } else if (To.name === ""){
-                    //error to be fixed
-                    alert(`Please select the "To" place again, sorry for the error`)
-
-                    Search("to")
-                    console.log(To)
-                }else{
-                    PostName()
-                    navigate("/")
-                }
-            }
-        })
-        function PostName(){
-            
-            axios.post("http://localhost:3000/project/add", {
+                        
+                        axios.post("http://localhost:3000/project/add", {
                     project_name: name,
                     data: {
                         "from": {
@@ -112,7 +76,59 @@ export default function ProjectCreation(){
                         }
                     }
                 })
-        }
+            .then((res) => {
+                const messages = {
+                    "good" : "Added with success",
+                    "already exists": "Already exists",
+                    "error": "An error occurred"
+                }
+                if(res.data.message === messages["already exists"]){
+                    alert(`Project already exists. Try another name`)
+                    return "already exists"
+                } else if(res.data.message === messages.error){
+                    alert(`Ocurred an error adding the project info, try another name. If doens't work, show the error to the dev. ERROR ADDING PROJECT INFO in PROJECT CREATION.tsx`)
+                    return "error"
+                }else{
+                    navigate("/")
+                }
+            })
+
+                    }
+                })
+            } else{
+                axios.post("http://localhost:3000/project/add", {
+                    project_name: name,
+                    data: {
+                        "from": {
+                            "id": From.id,
+                            "name": From.name.trim(),
+                            "latitude": From.lat,
+                            "longitude": From.lon
+                        },
+                        "to": {
+                            "id": To.id,
+                            "name": To.name.trim(),
+                            "latitude": To.lat,
+                            "longitude": To.lon
+                        }
+                    }
+                })
+            .then((res) => {
+                const messages = {
+                    "good" : "Added with success",
+                    "already exists": "Already exists",
+                    "error": "An error occurred"
+                }
+                if(res.data.message === messages["already exists"]){
+                    alert(`Project already exists. Try another name`)
+                } else if(res.data.message === messages.error){
+                    alert(`Ocurred an error adding the project info, try another name. If doens't work, show the error to the dev. ERROR ADDING PROJECT INFO in PROJECT CREATION.tsx`)
+                }else{
+                    navigate("/")
+                }
+            })
+            }
+        })
     }
 
     function Search(location: string) {
@@ -474,7 +490,7 @@ export default function ProjectCreation(){
         <div className="flex justify-center mt-52">
             <button
                 type="submit"
-                onClick={() => [validateForm(), setCreate(1)]}
+                onClick={() => [validateForm(), setCreate(Create + 1)]}
                 className="bg-zinc-800 text-white rounded-xl py-3 mt-5 w-full md:w-24 border border-zinc-700" 
             >Create</button>
         </div>

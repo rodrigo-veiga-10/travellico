@@ -9,5 +9,5 @@ pub fn project_router() -> Router {
         .route("/create_env", get(|| async { project_env_cont::create_handler().await }))
         //routes related to the project's
         .route("/add",post(project_cont::add_project_info_handler)) 
-
+        .route("/data", post(project_cont::project_data_handler))
 }

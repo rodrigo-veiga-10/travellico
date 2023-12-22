@@ -20,7 +20,7 @@ export default function App() {
       <Routes>
         <Route path="/setup" element={<Setup />} />
         <Route path="/settings" element={<Settings />} />
-        <Route path="/project/creation" element={<ProjectCreation/>}/>
+        <Route path="/project/create" element={<ProjectCreation/>}/>
         <Route path="/" element={<Home />} />
       </Routes>
       {!userChecked && <CheckUser setUserChecked={setUserChecked} />}
