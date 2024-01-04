@@ -10,4 +10,6 @@ pub fn project_router() -> Router {
         //routes related to the project's
         .route("/add",post(project_cont::add_project_info_handler)) 
         .route("/data", post(project_cont::project_data_handler))
+        .route("/delete", post(project_cont::delete_project_handler))
+        .route("/rename", post(project_cont::rename_project_handler))
 }

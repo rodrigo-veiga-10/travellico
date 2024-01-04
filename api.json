@@ -198,7 +198,7 @@
                "option": {
                 "title": "option",
                 "type": "string",
-                "description": "empty string, for getting simple data of all projects"
+                "description": "empty string, for getting simple data of all projects or string with id of project to get data of project"
                }
              }
            }
@@ -207,7 +207,66 @@
       },
       "responses": {
         "200": {
-          "description": "Returns a JSON object with a message indicating the result of the creation"
+          "description": "Returns a JSON object with a message indicating the data"
+        }
+      }
+    }
+  },
+  "/project/delete": {
+    "post": {
+      "summary": "delete project",
+      "requestBody": {
+        "required": true,
+        "content": {
+          "application/json": {
+           "schema": {
+             "type": "object",
+             "properties": {
+               "id": {
+                "title": "id",
+                "type": "string",
+                "description": "id of project to delete"
+               }
+             }
+           }
+          }
+        }
+      },
+      "responses": {
+        "200": {
+          "description": "Returns a JSON object with a message indicating the result of the deletion"
+        }
+      }
+    }
+  },
+  "/project/rename": {
+    "post": {
+      "summary": "rename project",
+      "requestBody": {
+        "required": true,
+        "content": {
+          "application/json": {
+           "schema": {
+             "type": "object",
+             "properties": {
+               "id": {
+                "title": "id",
+                "type": "string",
+                "description": "id of project to rename"
+               },
+               "name":{
+                "title": "name",
+                "type": "string",
+                "description": "the name that the function will use to rename"
+               }
+             }
+           }
+          }
+        }
+      },
+      "responses": {
+        "200": {
+          "description": "Returns a JSON object with a message indicating the result of the function to rename"
         }
       }
     }

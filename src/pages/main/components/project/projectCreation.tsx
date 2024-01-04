@@ -18,6 +18,7 @@ export default function ProjectCreation(){
     //all the info is here
     const [From, setFrom] = useState({
         id: "",
+        osm_type: "",
         name: "",
         lat: "",
         lon: ""
@@ -25,6 +26,7 @@ export default function ProjectCreation(){
      
      const [To, setTo] = useState({
         id: "",
+        osm_type: "",
         name: "",
         lat: "",
         lon: ""
@@ -46,7 +48,6 @@ export default function ProjectCreation(){
     
 
     function FirstProject(){
-        console.log("called")
         const name = NameRef.current?.value;
         axios.get("http://localhost:3000/project/exist_env")
         .then((res) => {
@@ -59,17 +60,19 @@ export default function ProjectCreation(){
                     if (res.data.project_env_created === "true"){
                         console.log("project env created successfully")
                         
-                        axios.post("http://localhost:3000/project/add", {
+                    axios.post("http://localhost:3000/project/add", {
                     project_name: name,
                     data: {
                         "from": {
                             "id": From.id,
+                            "osm_type": From.osm_type,
                             "name": From.name.trim(),
                             "latitude": From.lat,
                             "longitude": From.lon
                         },
                         "to": {
                             "id": To.id,
+                            "osm_type": To.osm_type,
                             "name": To.name.trim(),
                             "latitude": To.lat,
                             "longitude": To.lon
@@ -101,12 +104,14 @@ export default function ProjectCreation(){
                     data: {
                         "from": {
                             "id": From.id,
+                            "osm_type": From.osm_type,
                             "name": From.name.trim(),
                             "latitude": From.lat,
                             "longitude": From.lon
                         },
                         "to": {
                             "id": To.id,
+                            "osm_type": To.osm_type,
                             "name": To.name.trim(),
                             "latitude": To.lat,
                             "longitude": To.lon
@@ -226,6 +231,7 @@ export default function ProjectCreation(){
                 if(location === "from"){
                     setFrom({
                         id: result.properties.osm_id,
+                        osm_type: result.properties.osm_type,
                         name: result.properties.name,
                         lat: result.geometry.coordinates[1],
                         lon: result.geometry.coordinates[0]
@@ -233,6 +239,7 @@ export default function ProjectCreation(){
                 }else if (location === "to"){
                     setTo({
                         id: result.properties.osm_id,
+                        osm_type: result.properties.osm_type,
                         name: result.properties.name,
                         lat: result.geometry.coordinates[1],
                         lon: result.geometry.coordinates[0]

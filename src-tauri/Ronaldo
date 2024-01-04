@@ -1,0 +1,18 @@
+{
+  "from": {
+    "id": 49715,
+    "latitude": 52.215933,
+    "longitude": 19.134422,
+    "name": "Polska",
+    "osm_type": "R"
+  },
+  "id": "171226319313176118",
+  "project_name": "Cavalo",
+  "to": {
+    "id": 295480,
+    "latitude": 39.6621648,
+    "longitude": -8.1353519,
+    "name": "Portugal",
+    "osm_type": "R"
+  }
+}

@@ -13,8 +13,8 @@
     "allowlist": {
       "dialog": {
         "all": false,
-        "ask": false,
-        "confirm": false,
+        "ask": true,
+        "confirm": true,
         "message": true,
         "open": false,
         "save": false
