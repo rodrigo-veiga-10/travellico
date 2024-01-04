@@ -14,7 +14,6 @@ export default function ProjectView() {
   };
 
   async function RenameIt(){
-    console.log("called");
         
     if (Rename.current?.value === undefined || Rename.current.value === "") {
         alert("Empty names are not allowed. 😑");
@@ -25,7 +24,6 @@ export default function ProjectView() {
                 name: Rename.current?.value,
             });
 
-            console.log(response);
 
             const message = response.data.message;
 
@@ -77,8 +75,6 @@ export default function ProjectView() {
             setIDBeingUsed(project_html.id)
         
             if (RenameCaller % 2 !== 0 || RenameCaller >= 2) {
-                console.log(RenameCaller)
-                console.log("called 2")
                 renameDialog.showModal();
             }else{
               alert("Something is not good 😅")
@@ -185,8 +181,6 @@ export default function ProjectView() {
 
         if (!projectExists) {
             main_div?.appendChild(project_html);
-        } else {
-            console.log("Project already exists in main_div");
         }
 
 
