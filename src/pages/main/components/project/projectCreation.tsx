@@ -457,6 +457,11 @@ export default function ProjectCreation(){
             </div>
             {advancedAreas.includes("from") && (
                 <>
+            <div className="mt-3 relative  left-[50px] w-[450px] text-center bg-zinc-900 rounded-xl p-2 border-cyan-900 border border-3" >
+                <p className="text-gray-400">In advanced search, specifying a location filters results in the box above. <br />
+                    For example, entering "Paris" shows Disney - Paris instead of Paris - Orlando.
+                    </p>
+            </div>
             <div className="mt-3  relative  left-[75px] w-[400px] text-center bg-zinc-800 rounded-xl p-4" >
                 <form onSubmit={(e) => e.preventDefault()} className="flex items-center">
                     <p className="pb-1 pr-3 text-xl ">Place</p>
@@ -481,6 +486,11 @@ export default function ProjectCreation(){
             </div>
             {advancedAreas.includes("to") && (
                 <>
+            <div className="mt-3 relative  left-[50px] w-[450px] text-center bg-zinc-900 rounded-xl p-2 border-cyan-900 border border-3" >
+                <p className="text-gray-400">In advanced search, specifying a location filters results in the box above. <br />
+                    For example, entering "Paris" shows Disney - Paris instead of Paris - Orlando.
+                    </p>
+            </div>
             <div className="mt-3  relative  left-[75px] w-[400px] text-center bg-zinc-800 rounded-xl p-4" >
                 <form onSubmit={(e) => e.preventDefault()} className="flex items-center">
                     <p className="pb-1 pr-3 text-xl ">Place</p>
