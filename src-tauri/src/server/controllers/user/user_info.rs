@@ -46,10 +46,14 @@ pub fn add_user_info(data: &str) -> Result<bool, Box<dyn std::error::Error>> {
 
     let json_data = serde_json::to_string_pretty(&serde_json::from_str::<Value>(data)?)?;
 
-    if !check_user_info_file() || std::fs::read_to_string(&file_path)?.is_empty() {
+    let metadata = std::fs::metadata(&file_path)?;
+
+    if !check_user_info_file() || metadata.len() == 0 {
         Ok(std::fs::write(&file_path, &json_data).is_ok())
     } else {
-        let mut existing_data: Value = serde_json::from_str(&std::fs::read_to_string(&file_path)?)?;
+        let file = std::fs::File::open(&file_path)?;
+        let reader = std::io::BufReader::new(file);
+        let mut existing_data: Value = serde_json::from_reader(reader)?;
 
         if let Some(existing_object) = existing_data.as_object_mut() {
             if let Some(new_object) = serde_json::from_str::<serde_json::Value>(&json_data)?.as_object() {

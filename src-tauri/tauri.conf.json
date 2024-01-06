@@ -7,10 +7,18 @@
   },
   "package": {
     "productName": "Travellico",
-    "version": "0.1.1"
+    "version": "0.2.0"
   },
   "tauri": {
     "allowlist": {
+      "dialog": {
+        "all": false,
+        "ask": true,
+        "confirm": true,
+        "message": true,
+        "open": false,
+        "save": false
+      },
       "all": false,
       "shell": {
         "all": false,

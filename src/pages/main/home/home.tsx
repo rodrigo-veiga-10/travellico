@@ -1,7 +1,11 @@
+import ProjectView from "../components/project/projectView"
+import Greeting from "../components/Greeting"
+
 export default function Home(){
     return (
         <>
-            <h1>Home</h1>
+            <Greeting/>
+            <ProjectView/>
         </>
     )
 }
