@@ -8,7 +8,9 @@ import Settings from "./pages/config/settings/settings";
 
 //components
 import Setup from "./pages/main/components/setup/setup";
+import ProjectCreation from "./pages/main/components/project/projectCreation";
 import { useEffect, useState } from "react";
+import ProjectEdit from "./pages/main/components/project/edit/ProjectEdit";
 
 export default function App() {
   
@@ -19,6 +21,8 @@ export default function App() {
       <Routes>
         <Route path="/setup" element={<Setup />} />
         <Route path="/settings" element={<Settings />} />
+        <Route path="/project/create" element={<ProjectCreation/>}/>
+        <Route path="/project/edit" element={<ProjectEdit />}/>
         <Route path="/" element={<Home />} />
       </Routes>
       {!userChecked && <CheckUser setUserChecked={setUserChecked} />}
